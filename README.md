@@ -1,46 +1,18 @@
-# Logistics Wizard Overview
+# Logistics Wizard Controller
 
-[![Build Status](https://travis-ci.org/IBM-Bluemix/logistics-wizard.svg?branch=master)](https://travis-ci.org/IBM-Bluemix/logistics-wizard) [![Coverage Status](https://coveralls.io/repos/github/IBM-Bluemix/logistics-wizard/badge.svg?branch=master)](https://coveralls.io/github/IBM-Bluemix/logistics-wizard?branch=master)
+[![Build Status](https://travis-ci.org/IBM-Bluemix/logistics-wizard-controller.svg?branch=master)](https://travis-ci.org/IBM-Bluemix/logistics-wizard-controller) [![Coverage Status](https://coveralls.io/repos/github/IBM-Bluemix/logistics-wizard-controller/badge.svg?branch=master)](https://coveralls.io/github/IBM-Bluemix/logistics-wizard-controller?branch=master)
 
 **WORK IN PROGRESS**
 
+This service is part of the larger [Logistics Wizard](https://github.com/IBM-Bluemix/logistics-wizard) project.
+
+## Overview
+
 This repository serves as the central server application for the Logistics Wizard application and acts as the main controller for interaction between the system's services.
 
-Logistics Wizard is a reimagined supply chain optimization system for the 21st century. It is comprised of a set of loosely-coupled, distributed services that take an existing ERP system and extend its functionality by leveraging various cloud services. The goal of this system is to showcase several common SaaS implementation patterns and provide them to our developer community. This demo exhibits hybrid cloud, microservices, and big data anlytics concepts that can be reused when building enterprise-level applications on Bluemix.
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM-Bluemix/logistics-wizard-controller.git)
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM-Bluemix/logistics-wizard.git)
-
-![Bluemix Deployments](https://deployment-tracker.mybluemix.net/stats/8e7fa74ef3a53ba599bf51db09e77553/badge.svg)
-
-The following services are leveraged in the overall Logistics Wizard solution, yet are built to be extensible for other purposes:
-
-* [logistics-wizard-erp][erp_github_url]
-* [logistics-wizard-recommendation][recommendation_github_url]
-
-To deploy the full system all at once, check out the [Logistics Wizard Toolchain][toolchain_github_url]
-
-![Architecture](http://g.gravizo.com/g?
-  digraph G {
-    node [fontname = "helvetica"]
-    rankdir=RL
-    user -> controller [label="1 - Makes a request"]
-    recommendations -> discovery [headlabel="2 - Registers and sends heartbeat" labeldistance=12 labelangle=-16]
-    erp -> discovery [label="3 - Registers and sends heartbeat"]
-    controller -> discovery [taillabel="4 - Query for services" labeldistance=8 labelangle=-7]
-    controller -> erp [label="5 - CRUD SCM data"]
-    controller -> recommendations [label="6 - Retrieve/update recommendations" dir="back"]
-    {rank=max; user}
-    {rank=same; erp -> controller [style=invis]}
-    {rank=same; controller -> recommendations [style=invis]}
-    {rank=min; discovery}
-    /* styling */
-    user [shape=diamond width=1 height=1 fixedsize=true style=filled color="black" fontcolor=white label="User"]
-    erp [shape=rect style=filled color="%2324B643" fontcolor=white label="ERP"]
-    controller [shape=rect label="Controller API"]
-    recommendations [shape=rect style=filled color="%2324B643" fontcolor=white label="Recommendations"]
-    discovery [shape=circle width=1 fixedsize=true style=filled color="%234E96DB" fontcolor=white label="Service\\nRegistry"]
-  }
-)
+![Bluemix Deployments](https://deployment-tracker.mybluemix.net/stats/d4f7f6455442b0d2e1325dde70ab15ab/badge.svg)
 
 ## Running the app on Bluemix
 
@@ -51,7 +23,7 @@ To deploy the full system all at once, check out the [Logistics Wizard Toolchain
 3. Clone the app and its submodules to your local environment from your terminal using the following command:
 
 	```bash
-	$ git clone --recursive https://github.com/IBM-Bluemix/logistics-wizard.git
+	$ git clone --recursive https://github.com/IBM-Bluemix/logistics-wizard-controller.git
 	```
 
 4. `cd` into this newly created directory
@@ -81,7 +53,7 @@ And voila! You now have your very own instance of Logistics Wizard running on Bl
 2. Clone the app to your local environment from your terminal using the following command:
 
   ```bash
-  $ git clone --recursive https://github.com/IBM-Bluemix/logistics-wizard.git
+  $ git clone --recursive https://github.com/IBM-Bluemix/logistics-wizard-controller.git
   ```
 
 3. `cd` into this newly created directory
@@ -190,13 +162,13 @@ Your app should now be capable of sending welcome emails to any end users that i
 ## API documentation
 The API methods that this component exposes requires the discovery of dependent services, however, the API will gracefully fail when they are not available.
 
-The API and data models are defined in [this Swagger 2.0 file](swagger.yaml). You can view this file in the [Swagger Editor](http://editor.swagger.io/#/?import=https://raw.githubusercontent.com/IBM-Bluemix/logistics-wizard/master/swagger.yaml).
+The API and data models are defined in [this Swagger 2.0 file](swagger.yaml). You can view this file in the [Swagger Editor](http://editor.swagger.io/#/?import=https://raw.githubusercontent.com/IBM-Bluemix/logistics-wizard-controller/master/swagger.yaml).
 
 Use the Postman collection to help you get started with the controller API:  
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/b39a8c0ce27371fbd972#?env%5BLW_Prod%5D=W3sia2V5IjoiZXJwX2hvc3QiLCJ2YWx1ZSI6Imh0dHA6Ly9sb2dpc3RpY3Mtd2l6YXJkLWVycC5teWJsdWVtaXgubmV0LyIsInR5cGUiOiJ0ZXh0IiwiZW5hYmxlZCI6dHJ1ZSwiaG92ZXJlZCI6ZmFsc2V9LHsia2V5IjoiY29udHJvbGxlcl9ob3N0IiwidmFsdWUiOiJodHRwczovL2xvZ2lzdGljcy13aXphcmQubXlibHVlbWl4Lm5ldCIsInR5cGUiOiJ0ZXh0IiwiZW5hYmxlZCI6dHJ1ZSwiaG92ZXJlZCI6ZmFsc2V9XQ==)
 
 ## Contribute
-Please check out our [Contributing Guidelines](.github/CONTRIBUTING.md) for detailed information on how you can lend a hand to the Logistics Wizard demo implementation effort.
+Please check out our [Contributing Guidelines](https://github.com/IBM-Bluemix/logistics-wizard/blob/master/.github/CONTRIBUTING.md) for detailed information on how you can lend a hand to the Logistics Wizard demo implementation effort.
 
 ## Troubleshooting
 

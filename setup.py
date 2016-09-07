@@ -23,9 +23,9 @@ setup(
     version='0.1.0',
     description='Proxy app for the Logistics Wizard demo system',
     long_description=long_description,
-    url='https://github.com/IBM-Bluemix/logistics-wizard',
-    author='Jake Peyser',
-    author_email='jepeyser@us.ibm.com',
+    url='https://github.com/IBM-Bluemix/logistics-wizard-controller',
+    author='IBM-Bluemix',
+    author_email='ibm@us.ibm.com',
     license='Apache-2.0',
     classifiers=[
         'Development Status :: 4 - Beta',
