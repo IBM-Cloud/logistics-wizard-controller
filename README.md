@@ -12,7 +12,7 @@ This repository serves as the central server application for the Logistics Wizar
 
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM-Bluemix/logistics-wizard-controller.git)
 
-![Bluemix Deployments](https://deployment-tracker.mybluemix.net/stats/8e7fa74ef3a53ba599bf51db09e77553/badge.svg)
+![Bluemix Deployments](https://deployment-tracker.mybluemix.net/stats/d4f7f6455442b0d2e1325dde70ab15ab/badge.svg)
 
 ## Running the app on Bluemix
 
