@@ -1,0 +1,8 @@
+{
+  "error": {
+    "name": "Error",
+    "status": 404,
+    "message": "No demo with this id",
+    "stack": "Error: No demo with this id\n"
+  }
+}

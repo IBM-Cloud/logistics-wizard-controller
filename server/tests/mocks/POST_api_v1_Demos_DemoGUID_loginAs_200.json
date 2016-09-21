@@ -1,0 +1,22 @@
+{
+  "token": {
+    "id": "cd9jikb518TlpJjssYao90ad8o2I5WUpjGdXSgQgSh6uXaBZGuRKiJ4z6mYnzxFc",
+    "ttl": 1209600,
+    "created": "2016-09-21T12:30:02.520Z",
+    "userId": 1
+  },
+  "user": {
+    "username": "Supply Chain Manager (zjzuP27bEk)",
+    "email": "chris.zjzuP27bEk@acme.com",
+    "id": 3,
+    "demoId": 2,
+    "roles": [
+      {
+        "id": 1,
+        "name": "supplychainmanager",
+        "created": "2016-09-21T11:37:37.559Z",
+        "modified": "2016-09-21T11:37:37.559Z"
+      }
+    ]
+  }
+}

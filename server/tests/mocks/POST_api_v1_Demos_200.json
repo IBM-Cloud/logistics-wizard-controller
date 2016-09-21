@@ -1,0 +1,22 @@
+{
+  "createdAt": "2016-09-21T11:40:31.221Z",
+  "name": "demo",
+  "guid": "DemoGUID",
+  "id": 1,
+  "users": [
+    {
+      "username": "Supply Chain Manager (zjzuP27bEk)",
+      "email": "chris.zjzuP27bEk@acme.com",
+      "id": 1,
+      "demoId": 1,
+      "roles": [
+        {
+          "id": 1,
+          "name": "supplychainmanager",
+          "created": "2016-09-21T11:37:37.559Z",
+          "modified": "2016-09-21T11:37:37.559Z"
+        }
+      ]
+    }
+  ]
+}

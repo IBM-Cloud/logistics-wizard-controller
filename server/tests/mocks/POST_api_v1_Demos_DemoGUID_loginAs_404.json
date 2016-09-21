@@ -1,0 +1,8 @@
+{
+  "error": {
+    "name": "Error",
+    "status": 404,
+    "message": "No user with this id",
+    "stack": "Error: No user with this id\n    at /Users/fred/dev/logistics/logistics-wizard-erp/common/models/demo.js:385:32\n    at /Users/fred/dev/logistics/logistics-wizard-erp/node_modules/loopback-datasource-juggler/lib/dao.js:1823:62\n    at /Users/fred/dev/logistics/logistics-wizard-erp/node_modules/loopback-datasource-juggler/lib/dao.js:1752:9\n    at /Users/fred/dev/logistics/logistics-wizard-erp/node_modules/loopback-datasource-juggler/node_modules/async/lib/async.js:396:17\n    at async.each (/Users/fred/dev/logistics/logistics-wizard-erp/node_modules/loopback-datasource-juggler/node_modules/async/lib/async.js:153:20)\n    at _asyncMap (/Users/fred/dev/logistics/logistics-wizard-erp/node_modules/loopback-datasource-juggler/node_modules/async/lib/async.js:390:13)\n    at Object.map (/Users/fred/dev/logistics/logistics-wizard-erp/node_modules/loopback-datasource-juggler/node_modules/async/lib/async.js:361:23)\n    at allCb (/Users/fred/dev/logistics/logistics-wizard-erp/node_modules/loopback-datasource-juggler/lib/dao.js:1684:13)\n    at /Users/fred/dev/logistics/logistics-wizard-erp/node_modules/loopback-datasource-juggler/lib/include.js:171:13\n    at /Users/fred/dev/logistics/logistics-wizard-erp/node_modules/async-listener/glue.js:188:31"
+  }
+}

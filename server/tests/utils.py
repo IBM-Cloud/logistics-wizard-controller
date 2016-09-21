@@ -2,8 +2,13 @@
 Utilities for use by the unit tests
 """
 from datetime import datetime
+import httpretty
 import server.services.demos as demo_service
 
+httpretty.enable()
+
+def mock_with_file(method, uri, file, status):
+    httpretty.register_uri(method, uri, body=open(file, 'r').read(), status=status)
 
 def create_demo():
     """Creates a demo object for a unit test class"""
