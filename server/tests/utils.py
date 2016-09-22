@@ -4,7 +4,6 @@ Utilities for use by the unit tests
 from datetime import datetime
 import server.services.demos as demo_service
 
-
 def create_demo():
     """Creates a demo object for a unit test class"""
     return demo_service.create_demo(datetime.now().isoformat("T"))
