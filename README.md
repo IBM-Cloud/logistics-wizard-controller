@@ -98,19 +98,18 @@ To get values for your local environment variables in `.env.local`, check out th
 There are series of unit tests located in the [`server/tests`](server/tests) folder. The test suites are composed using the Python [unittest framework][unittest_docs_url]. To run the tests, execute the following command:
 
   ```bash
-  $ python server/tests/run_tests.py
+  $ python server/tests/run_unit_tests.py
   ```
 
-The tests will print a dot for each successfully completed unit test. If a test fails for any reason, it will mark that test with either an F or E and print the reason for any failed tests after the test suites are all completed. For example, here is the output of a successfully complete [`test_demos_service.py`](server/tests/test_demos_service.py) test:
+### Integration Tests
+Similar as the unit tests but they validate the communication between the controller
+and the other services, like the ERP service. These tests require a ERP service to be running.
 
-  ```bash
-  (venv) MyMac:logistics-wizard User$ python server/tests/test_demos_service.py
-  .......
-  ----------------------------------------------------------------------
-  Ran 7 tests in 30.597s
+To run the tests, execute the following command:
 
-  OK
-  ```
+ ```bash
+ $ python server/tests/run_integration_tests.py
+ ```
 
 ### Travis CI
 One popular option for continuous integration is [Travis CI][travis_url]. We have provided a `.travis.yml` file in this repository for convenience. In order to set it up for your repository, take the following actions:
@@ -134,7 +133,7 @@ Thats it! Now your future pushes to GitHub will be built and tested by Travis CI
 If you would like to perform code coverage tests as well, you can use [coveralls][coveralls_url] to perform this task. If you are using [Travis CI][travis_url] as your CI tool, simply replace `python` in your test commands with `coverage run` and then run `coveralls` as follows:
 
   ```bash
-  $ coverage run server/tests/run_tests.py
+  $ coverage run server/tests/run_unit_tests.py
   $ coveralls
   ```
 
