@@ -134,12 +134,13 @@ If you would like to perform code coverage tests as well, you can use [coveralls
 
   ```bash
   $ coverage run server/tests/run_unit_tests.py
+  $ coverage --append run server/tests/run_integration_tests.py
   $ coveralls
   ```
 
 To determine how to run coveralls using another CI tool or for more in-depth instructions, check out the [coveralls usage documentation][coveralls_usage_url].
 
-**Note**: The unit tests are currently hitting the production version of the [logistics-wizard-erp][erp_github_url] application. In the future these tests will be able to be run in isolation.
+**Note**: To pass, the integration tests require an [ERP service][erp_github_url] to be running.
 
 ## Setting up email
 In order to send welcome emails, we need to configure the app to use an SMTP server. For simplicity's sake, we will use the free SMTP server that Gmail provides. This section will walk you through how to do this:
