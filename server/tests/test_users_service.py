@@ -7,7 +7,6 @@ import server.services.demos as demo_service
 import server.services.users as user_service
 from server.exceptions import ResourceDoesNotExistException
 
-
 def suite():
     test_suite = unittest.TestSuite()
     test_suite.addTest(CreateUserTestCase('test_user_create_success'))
@@ -34,7 +33,6 @@ class CreateUserTestCase(unittest.TestCase):
 
     def test_user_create_success(self):
         """With correct values, is a valid user returned?"""
-
         # Create new user assigned to the first retailer
         user = user_service.create_user(loads(self.demo).get('guid'),
                                         loads(self.retailers)[0].get('id'))

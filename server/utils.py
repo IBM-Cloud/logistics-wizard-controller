@@ -15,11 +15,11 @@ def validate_email(email_address):
     """
     Verify that the email is a valid email address
     """
-    email_regex = re.compile("[a-z0-9!#$%&'*+/=?^_`{|}~-]+"
-                             "(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*"
+    email_regex = re.compile("[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+"
+                             "(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*"
                              "@"
-                             "(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+"
-                             "[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+                             "(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+"
+                             "[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?")
 
     if email_regex.match(email_address) is None:
         return False
