@@ -90,7 +90,7 @@ And voila! You now have your very own instance of Logistics Wizard running on Bl
   $ python bin/start_web.py
   ```
 
-To get values for your local environment variables in `.env.local`, check out the [Setting up email](#setting-up-email) section.
+To override values for your local environment variables create a `.env.local`.
 
 ## Testing
 
@@ -120,12 +120,6 @@ One popular option for continuous integration is [Travis CI][travis_url]. We hav
 
 3. Create the following environment variables
 	- `LOGISTICS_WIZARD_ENV` - TEST
-	- `SMTP_SERVER` - smpt.gmail.com
-	- `SMTP_SERVER_PORT` - 587
-	- `SMTP_USER_NAME`
-	- `SMTP_PASSWORD`
-
-	To get values for the `SMTP_USER_NAME` and `SMTP_PASSWORD` variables, check out the [Setting up email](#setting-up-email) section.
 
 Thats it! Now your future pushes to GitHub will be built and tested by Travis CI.
 
@@ -142,24 +136,6 @@ To determine how to run coveralls using another CI tool or for more in-depth ins
 
 **Note**: To pass, the integration tests require an [ERP service][erp_github_url] to be running.
 
-## Setting up email
-In order to send welcome emails, we need to configure the app to use an SMTP server. For simplicity's sake, we will use the free SMTP server that Gmail provides. This section will walk you through how to do this:
-
-1. [Create a new Gmail account][gmail_signup_url] to serve as the `FROM` address for your application's emails
-
-2. Turn on [Gmail access for less secure apps][google_less_secure_setting_url] so that your app will be able to send emails on your behalf
-
-3. Go to the _Forwarding/IMAP_ tab in your [Gmail settings][gmail_settings_url] and make sure IMAP is enabled. This ensures emails are properly copied into your sent folder.
-
-4. Lastly, your Gmail username and password must be copied to the service you are using for deployment. Here are some common options:
-	- **CF CLI**: Update the environment variables in your `manifest.yml` file or in your app dashboard's *Runtime* --> *Environment Variables* section after deployment.
-	- **DevOps Services Toolchain**: When configuring your toolchain, set the email parameters in the Delivery Pipleine section.
-	- **Travis CI**: Go to the *Settings* tab for your repo and update the environment variables there.
-	- **`.env.local`**: If you would like to test this functionality while developing locally, copy the values into this file.
-
-Your app should now be capable of sending welcome emails to any end users that include their email address during signup.
-
-**Note**: Be aware that Google restricts the number of messages sent per day to 99 emails. The restriction is automatically removed within 24 hours after the limit was reached.
 
 ## API documentation
 The API methods that this component exposes requires the discovery of dependent services, however, the API will gracefully fail when they are not available.
@@ -217,6 +193,3 @@ See [License.txt](License.txt) for license information.
 [travis_profile_url]: https://travis-ci.org/profile/
 [coveralls_url]: https://coveralls.io/
 [coveralls_usage_url]: https://pypi.python.org/pypi/coveralls#usage-travis-ci
-[gmail_signup_url]: https://accounts.google.com/signup
-[gmail_settings_url]: https://mail.google.com/mail/u/1/#settings/fwdandpop
-[google_less_secure_setting_url]: https://www.google.com/settings/security/lesssecureapps
