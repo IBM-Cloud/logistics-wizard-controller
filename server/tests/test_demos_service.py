@@ -16,7 +16,6 @@ from server.exceptions import (UnprocessableEntityException,
 def suite():
     test_suite = unittest.TestSuite()
     test_suite.addTest(CreateDemoTestCase('test_demo_create_success'))
-    test_suite.addTest(CreateDemoTestCase('test_demo_create_email'))
     test_suite.addTest(RetrieveDemoTestCase('test_demo_retrieve_success'))
     test_suite.addTest(RetrieveDemoTestCase('test_demo_retrieve_invalid_input'))
     test_suite.addTest(RetrieveDemoTestCase('test_demo_retrieve_retailers_success'))
@@ -37,15 +36,13 @@ class CreateDemoTestCase(unittest.TestCase):
         """With correct values, is a valid demo returned?"""
 
         # Create demo
-        demo_name = datetime.now().isoformat("T")
-        demo = demo_service.create_demo(demo_name)
+        demo = demo_service.create_demo()
 
         # TODO: Update to use assertIsInstance(a,b)
         # Check all expected object values are present
         demo_json = loads(demo)
         self.assertTrue(demo_json.get('id'))
         self.assertTrue(demo_json.get('guid'))
-        self.assertTrue(demo_json.get('name') == demo_name)
         self.assertTrue(demo_json.get('createdAt'))
         self.assertTrue(demo_json.get('users'))
 
@@ -67,25 +64,6 @@ class CreateDemoTestCase(unittest.TestCase):
         # Destroy demo
         demo_service.delete_demo_by_guid(demo_json.get('guid'))
 
-    def test_demo_create_email(self):
-        """Is an invalid email detected correctly?"""
-
-        # Test invalid email throws ValidationException
-        demo_name = datetime.now().isoformat("T")
-        invalid_email = "email@example@example.com"
-        self.assertRaises(UnprocessableEntityException,
-                          demo_service.create_demo,
-                          demo_name, invalid_email)
-
-        # Test valid email completes
-        demo_name = datetime.now().isoformat("T")
-        valid_email = "test@example.com"
-        demo = demo_service.create_demo(demo_name, valid_email)
-        self.assertTrue(loads(demo).get('id'))
-
-        # Destroy demo
-        demo_service.delete_demo_by_guid(loads(demo).get('guid'))
-
 
 class RetrieveDemoTestCase(unittest.TestCase):
     """Tests for `services/demos.py - get_demo_by_guid(), get_demo_retailers()`.
@@ -93,7 +71,7 @@ class RetrieveDemoTestCase(unittest.TestCase):
 
     def setUp(self):
         # Create demo
-        self.demo = utils.create_demo()
+        self.demo = demo_service.create_demo()
         demo_json = loads(self.demo)
         demo_guid = demo_json.get('guid')
         demo_user_id = demo_json.get('users')[0].get('id')
@@ -210,7 +188,7 @@ class RetrieveDemoTestCase(unittest.TestCase):
             self.assertTrue(distribution_center.get('address').get('longitude'))
 
     def tearDown(self):
-        utils.delete_demo(loads(self.demo).get('guid'))
+        demo_service.delete_demo_by_guid(loads(self.demo).get('guid'))
 
 
 class DeleteDemoTestCase(unittest.TestCase):
@@ -218,7 +196,7 @@ class DeleteDemoTestCase(unittest.TestCase):
 
     def setUp(self):
         # Create demo
-        self.demo = utils.create_demo()
+        self.demo = demo_service.create_demo()
 
     def test_demo_delete_success(self):
         """With correct values, is a valid demo deleted?"""

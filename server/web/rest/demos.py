@@ -37,14 +37,8 @@ def create_demo():
     """
     Create a new demo resource.
 
-    :param {
-        "name": "Example Demo Name",
-        "email": "test@example.com"
-    }
-
     :return: {
         "id": "123",
-        "name": "Example Demo Name",
         "guid": "JDJhJDEdTRUR...VBrbW9vcj3k4L2sy",
         "createdAt": "2015-11-05T22:00:51.692765",
         "users": [{User}...{User}]
@@ -52,13 +46,7 @@ def create_demo():
 
     """
 
-    # Get inputs and make sure required params are not null
-    data = web_utils.get_json_data(request)
-    demo_name = data.get('name')
-    user_email = data.get('email')
-    web_utils.check_null_input((demo_name, 'demo name for the new demo session'))
-
-    demo = demo_service.create_demo(demo_name, user_email)
+    demo = demo_service.create_demo()
     return Response(demo,
                     status=201,
                     mimetype='application/json')

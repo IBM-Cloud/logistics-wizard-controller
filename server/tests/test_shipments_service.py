@@ -1,6 +1,7 @@
 import unittest
 from json import loads, dumps
 import server.tests.utils as utils
+import server.services.demos as demo_service
 import server.services.users as user_service
 import server.services.shipments as shipment_service
 import server.services.retailers as retailer_service
@@ -48,7 +49,7 @@ class GetShipmentsTestCase(unittest.TestCase):
 
     def setUp(self):
         # Create demo
-        self.demo = utils.create_demo()
+        self.demo = demo_service.create_demo()
         demo_json = loads(self.demo)
         demo_guid = demo_json.get('guid')
         demo_user_id = demo_json.get('users')[0].get('id')
@@ -154,7 +155,7 @@ class GetShipmentsTestCase(unittest.TestCase):
                           utils.get_bad_token())
 
     def tearDown(self):
-        utils.delete_demo(loads(self.demo).get('guid'))
+        demo_service.delete_demo_by_guid(loads(self.demo).get('guid'))
 
 
 class CreateShipmentTestCase(unittest.TestCase):
@@ -162,7 +163,7 @@ class CreateShipmentTestCase(unittest.TestCase):
 
     def setUp(self):
         # Create demo
-        self.demo = utils.create_demo()
+        self.demo = demo_service.create_demo()
         demo_json = loads(self.demo)
         demo_guid = demo_json.get('guid')
         demo_user_id = demo_json.get('users')[0].get('id')
@@ -238,7 +239,7 @@ class CreateShipmentTestCase(unittest.TestCase):
                           utils.get_bad_token(), shipment)
 
     def tearDown(self):
-        utils.delete_demo(loads(self.demo).get('guid'))
+        demo_service.delete_demo_by_guid(loads(self.demo).get('guid'))
 
 
 class GetShipmentTestCase(unittest.TestCase):
@@ -246,7 +247,7 @@ class GetShipmentTestCase(unittest.TestCase):
 
     def setUp(self):
         # Create demo
-        self.demo = utils.create_demo()
+        self.demo = demo_service.create_demo()
         demo_json = loads(self.demo)
         demo_guid = demo_json.get('guid')
         demo_user_id = demo_json.get('users')[0].get('id')
@@ -321,7 +322,7 @@ class GetShipmentTestCase(unittest.TestCase):
                           utils.get_bad_token(), shipment_id)
 
     def tearDown(self):
-        utils.delete_demo(loads(self.demo).get('guid'))
+        demo_service.delete_demo_by_guid(loads(self.demo).get('guid'))
 
 
 class DeleteShipmentTestCase(unittest.TestCase):
@@ -329,7 +330,7 @@ class DeleteShipmentTestCase(unittest.TestCase):
 
     def setUp(self):
         # Create demo
-        self.demo = utils.create_demo()
+        self.demo = demo_service.create_demo()
         demo_json = loads(self.demo)
         demo_guid = demo_json.get('guid')
         demo_user_id = demo_json.get('users')[0].get('id')
@@ -368,7 +369,7 @@ class DeleteShipmentTestCase(unittest.TestCase):
                           utils.get_bad_token(), shipment_id)
 
     def tearDown(self):
-        utils.delete_demo(loads(self.demo).get('guid'))
+        demo_service.delete_demo_by_guid(loads(self.demo).get('guid'))
 
 
 class UpdateShipmentTestCase(unittest.TestCase):
@@ -376,7 +377,7 @@ class UpdateShipmentTestCase(unittest.TestCase):
 
     def setUp(self):
         # Create demo
-        self.demo = utils.create_demo()
+        self.demo = demo_service.create_demo()
         demo_json = loads(self.demo)
         demo_guid = demo_json.get('guid')
         demo_user_id = demo_json.get('users')[0].get('id')
@@ -461,7 +462,7 @@ class UpdateShipmentTestCase(unittest.TestCase):
                           utils.get_bad_token(), shipment_id, shipment)
 
     def tearDown(self):
-        utils.delete_demo(loads(self.demo).get('guid'))
+        demo_service.delete_demo_by_guid(loads(self.demo).get('guid'))
 
 if __name__ == '__main__':
     unittest.main()
