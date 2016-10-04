@@ -2,17 +2,6 @@
 Utilities for use by the unit tests
 """
 from datetime import datetime
-import server.services.demos as demo_service
-
-def create_demo():
-    """Creates a demo object for a unit test class"""
-    return demo_service.create_demo(datetime.now().isoformat("T"))
-
-
-def delete_demo(demo_guid):
-    """Deletes the demo object used by a unit test class"""
-    demo_service.delete_demo_by_guid(demo_guid)
-
 
 def get_bad_token():
     """Returns an invalid loopback token"""

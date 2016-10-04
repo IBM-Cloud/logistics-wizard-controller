@@ -22,13 +22,6 @@ paths:
       summary: Create Demo
       description: |
         Create new demo session
-      parameters:
-        - name: demoInfo
-          in: body
-          description: Demo name and user email
-          required: true
-          schema:
-            $ref: '#/definitions/Demo'
       tags:
         - Demo
       responses:
@@ -36,10 +29,6 @@ paths:
           description: The new Demo object
           schema:
             $ref: '#/definitions/Demo'
-        422:
-          description: Invalid email
-          schema:
-            $ref: '#/definitions/Error'
         default:
           description: Unexpected error
           schema:
@@ -779,8 +768,6 @@ definitions:
         format: int32
       guid:
         type: string
-      name:
-        type: string
       createdAt:
         type: string
         format: date
@@ -788,8 +775,6 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/User'
-    required:
-      - name
   Session:
     properties:
       shipments:

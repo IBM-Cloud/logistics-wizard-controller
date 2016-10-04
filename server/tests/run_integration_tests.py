@@ -15,10 +15,6 @@ test_modules = [
     'server.tests.test_users_service'
     ]
 
-# Test messaging service if email env vars populated
-if env.get('SMTP_USER_NAME') is not None and env['SMTP_USER_NAME']:
-    test_modules.append('server.tests.test_messaging_service')
-
 suite = unittest.TestSuite()
 
 for test in test_modules:

@@ -6,8 +6,7 @@ object and should just call into the service layer to act upon a demo resource.
 """
 import requests
 import json
-import server.services.messaging as messaging_service
-from server.utils import validate_email, get_service_url
+from server.utils import get_service_url
 from server.exceptions import (ResourceDoesNotExistException)
 from server.exceptions import (APIException,
                                UnprocessableEntityException)
@@ -26,7 +25,6 @@ def demo_to_dict(demo):
     """
     return {
         'id': demo.id,
-        'name': demo.name,
         'guid': demo.guid,
         'createdAt': demo.createdAt,
         'users': demo.users
@@ -37,19 +35,12 @@ def demo_to_dict(demo):
 #         Services        #
 ###########################
 
-def create_demo(demo_name, user_email=None):
+def create_demo():
     """
     Create a new demo session in the ERP system.
 
-    :param demo_name:   Name of the demo being created.
-    :param user_email:  Email of the user creating the demo.
-
     :return:         The created Demo model.
     """
-
-    # Check email
-    if user_email is not None and validate_email(user_email) == False:
-        raise UnprocessableEntityException("Invalid email address")
 
     # Create and format request to ERP
     url = '%s/api/v1/Demos' % get_service_url('lw-erp')
@@ -57,24 +48,11 @@ def create_demo(demo_name, user_email=None):
         'content-type': "application/json",
         'cache-control': "no-cache"
     }
-    payload = dict()
-    payload['name'] = demo_name
-    payload_json = json.dumps(payload)
 
     try:
-        response = requests.request("POST", url, data=payload_json, headers=headers)
+        response = requests.request("POST", url, headers=headers)
     except Exception as e:
         raise APIException('ERP threw error creating new Demo', internal_details=str(e))
-
-    # Commenting out synchronous email sending until one-off tasks are enabled
-    # if user_email:
-    #     demo = json.loads(response.text)
-    #     subject = "Your Logistics Wizard session has been created - Demo #" + \
-    #               demo.get('guid')[-6:].upper()
-    #     message = messaging_service.compose_msg('welcome.html', (demo.get('guid'),
-    #                                                              demo.get('users')[0].get('username'),
-    #                                                              str(demo.get('users')[0].get('id'))))
-    #     messaging_service.send_email(user_email, subject, message, 'html')
 
     return response.text
 

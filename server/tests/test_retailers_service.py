@@ -2,6 +2,7 @@ import unittest
 from json import loads
 from types import IntType
 import server.tests.utils as utils
+import server.services.demos as demo_service
 import server.services.users as user_service
 import server.services.retailers as retailer_service
 from server.exceptions import (AuthenticationException,
@@ -30,7 +31,7 @@ class GetRetailersTestCase(unittest.TestCase):
 
     def setUp(self):
         # Create demo
-        self.demo = utils.create_demo()
+        self.demo = demo_service.create_demo()
         demo_json = loads(self.demo)
         demo_guid = demo_json.get('guid')
         demo_user_id = demo_json.get('users')[0].get('id')
@@ -68,7 +69,7 @@ class GetRetailersTestCase(unittest.TestCase):
                           utils.get_bad_token())
 
     def tearDown(self):
-        utils.delete_demo(loads(self.demo).get('guid'))
+        demo_service.delete_demo_by_guid(loads(self.demo).get('guid'))
 
 
 class GetRetailerTestCase(unittest.TestCase):
@@ -76,7 +77,7 @@ class GetRetailerTestCase(unittest.TestCase):
 
     def setUp(self):
         # Create demo
-        self.demo = utils.create_demo()
+        self.demo = demo_service.create_demo()
         demo_json = loads(self.demo)
         demo_guid = demo_json.get('guid')
         demo_user_id = demo_json.get('users')[0].get('id')
@@ -127,7 +128,7 @@ class GetRetailerTestCase(unittest.TestCase):
                           utils.get_bad_token(), retailer_id)
 
     def tearDown(self):
-        utils.delete_demo(loads(self.demo).get('guid'))
+        demo_service.delete_demo_by_guid(loads(self.demo).get('guid'))
 
 
 class GetRetailerInventoryTestCase(unittest.TestCase):
@@ -135,7 +136,7 @@ class GetRetailerInventoryTestCase(unittest.TestCase):
 
     def setUp(self):
         # Create demo
-        self.demo = utils.create_demo()
+        self.demo = demo_service.create_demo()
         demo_json = loads(self.demo)
         demo_guid = demo_json.get('guid')
         demo_user_id = demo_json.get('users')[0].get('id')
@@ -182,7 +183,7 @@ class GetRetailerInventoryTestCase(unittest.TestCase):
                           utils.get_bad_token(), retailer_id)
 
     def tearDown(self):
-        utils.delete_demo(loads(self.demo).get('guid'))
+        demo_service.delete_demo_by_guid(loads(self.demo).get('guid'))
 
 if __name__ == '__main__':
     unittest.main()

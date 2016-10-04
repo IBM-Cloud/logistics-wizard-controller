@@ -28,7 +28,7 @@ class CreateUserTestCase(unittest.TestCase):
 
     def setUp(self):
         # Create demo
-        self.demo = test_utils.create_demo()
+        self.demo = demo_service.create_demo()
         self.retailers = demo_service.get_demo_retailers(loads(self.demo).get('guid'))
 
     def test_user_create_success(self):
@@ -59,7 +59,7 @@ class CreateUserTestCase(unittest.TestCase):
                           loads(self.demo).get('guid'), '123321')
 
     def tearDown(self):
-        test_utils.delete_demo(loads(self.demo).get('guid'))
+        demo_service.delete_demo_by_guid(loads(self.demo).get('guid'))
 
 
 class UserLoginTestCase(unittest.TestCase):
@@ -67,7 +67,7 @@ class UserLoginTestCase(unittest.TestCase):
 
     def setUp(self):
         # Create demo
-        self.demo = test_utils.create_demo()
+        self.demo = demo_service.create_demo()
 
     def test_user_login_success(self):
         """With correct values, is a valid user logged in?"""
@@ -107,7 +107,7 @@ class UserLoginTestCase(unittest.TestCase):
                           demo_json.get('guid'), '123321')
 
     def tearDown(self):
-        test_utils.delete_demo(loads(self.demo).get('guid'))
+        demo_service.delete_demo_by_guid(loads(self.demo).get('guid'))
 
 
 class UserLogoutTestCase(unittest.TestCase):
@@ -115,7 +115,7 @@ class UserLogoutTestCase(unittest.TestCase):
 
     def setUp(self):
         # Create demo
-        self.demo = test_utils.create_demo()
+        self.demo = demo_service.create_demo()
         demo_json = loads(self.demo)
         demo_guid = demo_json.get('guid')
         demo_user_id = demo_json.get('users')[0].get('id')
@@ -137,7 +137,7 @@ class UserLogoutTestCase(unittest.TestCase):
                           test_utils.get_bad_token())
 
     def tearDown(self):
-        test_utils.delete_demo(loads(self.demo).get('guid'))
+        demo_service.delete_demo_by_guid(loads(self.demo).get('guid'))
 
 
 class TokenizeTestCase(unittest.TestCase):
@@ -147,7 +147,7 @@ class TokenizeTestCase(unittest.TestCase):
         """Is auth data correctly tokenized and later detokenized?"""
 
         # Create demo
-        demo = test_utils.create_demo()
+        demo = demo_service.create_demo()
         demo_json = loads(demo)
         demo_guid = demo_json.get('guid')
         demo_user_id = demo_json.get('users')[0].get('id')
@@ -169,7 +169,7 @@ class TokenizeTestCase(unittest.TestCase):
                         decrypted_auth_data.get('user').get('id'))
 
         # Destroy demo
-        test_utils.delete_demo(demo_guid)
+        demo_service.delete_demo_by_guid(demo_guid)
 
 if __name__ == '__main__':
     unittest.main()
