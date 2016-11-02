@@ -20,7 +20,6 @@ def create_app():
     :return:         A flask object/wsgi callable.
     """
     import cf_deployment_tracker
-    from bluemix_service_discovery.service_publisher import ServicePublisher
     from server.config import Config
     from os import environ as env
     from server.exceptions import APIException
@@ -100,45 +99,4 @@ def create_app():
     logistics_wizard.errorhandler(400)(bad_request_handler)
     logistics_wizard.errorhandler(404)(not_found_handler)
 
-    # Register app with Service Discovery and initiate heartbeat cycle if running in PROD
-    if Config.SD_STATUS == 'ON' and env.get('VCAP_APPLICATION') is not None:
-        from signal import signal, SIGINT, SIGTERM
-        from sys import exit
-
-        # Create service publisher and register service
-        creds = json.loads(env['VCAP_SERVICES'])['service_discovery'][0]['credentials']
-        publisher = ServicePublisher('lw-controller', 300, 'UP',
-                                     json.loads(env['VCAP_APPLICATION'])['application_uris'][0],
-                                     'http', tags=['logistics-wizard', 'front-end', env['LOGISTICS_WIZARD_ENV']],
-                                     url=creds['url'], auth_token=creds['auth_token'])
-        publisher.register_service(True)
-
-        # Set up exit handlers for gracefully killing heartbeat thread
-        def exit_app(*args):
-            deregister_app(publisher)
-            exit(0)
-        signal(SIGTERM, exit_app)
-        signal(SIGINT, exit_app)
-        atexit.register(destroy_app, publisher)
-
     return logistics_wizard
-
-
-def deregister_app(publisher):
-    """
-    Deregister the app and stop its heartbeat (if beating)
-
-    :param: publisher   Service Discovery publisher
-    """
-    if publisher is not None and publisher.registered:
-        print ("Deregistering service from Service Discovery")
-        publisher.deregister_service()
-
-
-def destroy_app(publisher):
-    """
-    Gracefully shuts down the controller app
-
-    :param: publisher   Service Discovery publisher
-    """
-    deregister_app(publisher)
