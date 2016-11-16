@@ -1,8 +1,4 @@
 ---
-declared-services:
-  lw-service-discovery:
-    label: service_discovery
-    plan: free
 applications:
 - path: .
   memory: 256M
@@ -13,6 +9,3 @@ applications:
   env:
     LOGISTICS_WIZARD_ENV: PROD
     ERP_SERVICE: XXX
-    SD_STATUS: OFF
-  services:
-  - lw-service-discovery
