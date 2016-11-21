@@ -22,10 +22,10 @@ This repository serves as the central server application for the Logistics Wizar
 
 2. Download and install the [Cloud Foundry CLI][cloud_foundry_url] tool
 
-3. Clone the app and its submodules to your local environment from your terminal using the following command:
+3. Clone the app to your local environment from your terminal using the following command:
 
 	```bash
-	$ git clone --recursive https://github.com/IBM-Bluemix/logistics-wizard-controller.git
+	git clone https://github.com/IBM-Bluemix/logistics-wizard-controller.git
 	```
 
 4. `cd` into this newly created directory
@@ -37,13 +37,13 @@ This repository serves as the central server application for the Logistics Wizar
 6. Connect to Bluemix in the command line tool and follow the prompts to log in.
 
 	```bash
-	$ cf api https://api.ng.bluemix.net
-	$ cf login
+	cf api https://api.ng.bluemix.net
+	cf login
 	```
 7. Push the app to Bluemix.
 
 	```bash
-	$ cf push
+	cf push
 	```
 
 And voila! You now have your very own instance of Logistics Wizard running on Bluemix.
@@ -55,7 +55,7 @@ And voila! You now have your very own instance of Logistics Wizard running on Bl
 2. Clone the app to your local environment from your terminal using the following command:
 
   ```bash
-  $ git clone --recursive https://github.com/IBM-Bluemix/logistics-wizard-controller.git
+  git clone https://github.com/IBM-Bluemix/logistics-wizard-controller.git
   ```
 
 3. `cd` into this newly created directory
@@ -63,31 +63,31 @@ And voila! You now have your very own instance of Logistics Wizard running on Bl
 4. In order to create an isolated development environment, we will be using Python's [virtualenv][virtualenv_url] tool. If you do not have it installed already, run
 
   ```bash
-  $ pip install virtualenv
+  pip install virtualenv
   ```
 
   Then create a virtual environment called `venv` by running
 
   ```bash
-  $ virtualenv venv
+  virtualenv venv
   ```
 
 5. Activate this new environment with
 
   ```bash
-  $ source .env
+  source .env
   ```
 
 6. Install module requirements
 
   ```bash
-  $ pip install -r requirements.dev.txt
+  pip install -r requirements.dev.txt
   ```
 
 7. Finally, start the app
 
   ```bash
-  $ python bin/start_web.py
+  python bin/start_web.py
   ```
 
 To override values for your local environment variables create a `.env.local`.
@@ -98,7 +98,7 @@ To override values for your local environment variables create a `.env.local`.
 There are series of unit tests located in the [`server/tests`](server/tests) folder. The test suites are composed using the Python [unittest framework][unittest_docs_url]. To run the tests, execute the following command:
 
   ```bash
-  $ python server/tests/run_unit_tests.py
+  python server/tests/run_unit_tests.py
   ```
 
 ### Integration Tests
@@ -108,7 +108,7 @@ and the other services, like the ERP service. These tests require a ERP service 
 To run the tests, execute the following command:
 
  ```bash
- $ python server/tests/run_integration_tests.py
+ python server/tests/run_integration_tests.py
  ```
 
 ### Travis CI
