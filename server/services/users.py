@@ -101,7 +101,8 @@ def login(guid, user_id):
     login_response = json.loads(response.text)
     return {
         'loopback_token': login_response.get('token').get('id'),
-        'user': login_response.get('user')
+        'user': login_response.get('user'),
+        'guid': guid
     }
 
 
