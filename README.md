@@ -90,7 +90,11 @@ And voila! You now have your very own instance of Logistics Wizard running on Bl
   python bin/start_web.py
   ```
 
-To override values for your local environment variables create a `.env.local`.
+To override values for your local environment variables create a file named `.env.local` from the template:
+
+  ```
+  cp template-env.local .env.local
+  ```
 
 ## Testing
 
