@@ -1,0 +1,4 @@
+export ERP_SERVICE=http://0.0.0.0:3000
+export OPENWHISK_AUTH=
+export OPENWHISK_NAMESPACE=
+export OPENWHISK_PACKAGE=logistics-wizard-recommendation

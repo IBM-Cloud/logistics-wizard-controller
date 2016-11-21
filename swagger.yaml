@@ -760,6 +760,59 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
+  '/weather/recommendations':
+    get:
+      summary: Get Recommendations
+      description: |
+        Get recommendations for a demo session
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer token
+          required: true
+          type: string
+      tags:
+        - Weather
+      responses:
+        200:
+          description: The recommendations
+  '/weather/acknowledge':
+    post:
+      summary: Acknowledge a recommendation
+      description: |
+        Acknowledge a recommendation
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer token
+          required: true
+          type: string
+        - name: id
+          in: body
+          description: Recommendation Id
+          required: true
+          type: string
+      tags:
+        - Weather
+      responses:
+        200:
+          description: The recommendations
+  '/weather/simulate':
+    post:
+      summary: Trigger a simulation
+      description: |
+        Trigger a simulation
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer token
+          required: true
+          type: string
+      tags:
+        - Weather
+      responses:
+        200:
+          description: Upon successful triggering
 definitions:
   Demo:
     properties:

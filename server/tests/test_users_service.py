@@ -167,6 +167,8 @@ class TokenizeTestCase(unittest.TestCase):
                         decrypted_auth_data.get('exp'))
         self.assertTrue(auth_data.get('user').get('id') ==
                         decrypted_auth_data.get('user').get('id'))
+        self.assertTrue(auth_data.get('guid') ==
+                        decrypted_auth_data.get('guid'))
 
         # Destroy demo
         demo_service.delete_demo_by_guid(demo_guid)
