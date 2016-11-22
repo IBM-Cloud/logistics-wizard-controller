@@ -813,6 +813,32 @@ paths:
       responses:
         200:
           description: Upon successful triggering
+  '/weather/observations':
+    post:
+      summary: Return weather observations for the given location
+      description: |
+        Return weather observations for the given location
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer token
+          required: true
+          type: string
+        - name: latitude
+          in: body
+          description: Latitude of the location to lookup
+          required: true
+          type: number
+        - name: longitude
+          in: body
+          description: Longitude of the location to lookup
+          required: true
+          type: number
+      tags:
+        - Weather
+      responses:
+        200:
+          description: The current weather, 10-day forecast and alerts
 definitions:
   Demo:
     properties:
