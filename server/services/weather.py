@@ -53,7 +53,7 @@ def trigger_simulation(demoGuid):
     except Exception as e:
         raise APIException('KO', internal_details=str(e))
 
-    return response
+    return json.dumps(event)
 
 def get_observations(latitude, longitude):
     """
