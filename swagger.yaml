@@ -838,7 +838,9 @@ paths:
         - Weather
       responses:
         200:
-          description: The current weather, 10-day forecast and alerts
+          description: |
+            An aggregation of th current weather observation, 10-day forecasts and
+            alerts results from the Weather Company Data service
 definitions:
   Demo:
     properties:
