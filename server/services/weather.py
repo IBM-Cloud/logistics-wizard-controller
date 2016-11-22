@@ -38,12 +38,18 @@ def acknowledge_recommendation(demoGuid, recommendationId):
 def trigger_simulation(demoGuid):
     """
     Trigger a simulation in the given demo
+    Creates a Snow Storm in the DC area
     """
 
     try:
         payload = dict()
         payload['demoGuid'] = demoGuid
-        response = call_openwhisk('simulate', payload)
+        event = dict()
+        event['type'] = 'Snow Storm'
+        event['category'] = 5
+        event['metadata'] = {'longitude':-77.03, 'latitude':38.89}
+        payload['event'] = event
+        response = call_openwhisk('recommend', payload)
     except Exception as e:
         raise APIException('KO', internal_details=str(e))
 
