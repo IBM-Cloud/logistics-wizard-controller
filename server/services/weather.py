@@ -45,9 +45,7 @@ def trigger_simulation(demoGuid):
         payload = dict()
         payload['demoGuid'] = demoGuid
         event = dict()
-        event['type'] = 'Snow Storm'
-        event['category'] = 5
-        event['metadata'] = {'longitude':-77.03, 'latitude':38.89}
+        event = json.loads(open('./sample_event.json').read())
         payload['event'] = event
         response = call_openwhisk('recommend', payload)
     except Exception as e:
