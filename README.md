@@ -4,8 +4,6 @@
 | ----- | ----- |
 | **dev** | [![Build Status](https://travis-ci.org/IBM-Bluemix/logistics-wizard-controller.svg?branch=dev)](https://travis-ci.org/IBM-Bluemix/logistics-wizard-controller) [![Coverage Status](https://coveralls.io/repos/github/IBM-Bluemix/logistics-wizard-controller/badge.svg?branch=dev)](https://coveralls.io/github/IBM-Bluemix/logistics-wizard-controller?branch=dev)|
 
-**WORK IN PROGRESS**
-
 This service is part of the larger [Logistics Wizard](https://github.com/IBM-Bluemix/logistics-wizard) project.
 
 ## Overview
@@ -22,7 +20,7 @@ This service acts as the main controller for interaction between the system's se
 
 1. Download and install the [Cloud Foundry CLI][cloud_foundry_url] tool
 
-1. The app depends on the [ERP](https://github.com/IBM-Bluemix/logistics-wizard-erp) and [Recommendation](https://github.com/IBM-Bluemix/logistics-wizard-reommendation) microservices. Make sure to deploy them first.
+1. The app depends on the [ERP](https://github.com/IBM-Bluemix/logistics-wizard-erp) and [Recommendation](https://github.com/IBM-Bluemix/logistics-wizard-recommendation) microservices. Make sure to deploy them first.
 
 1. Clone the app to your local environment from your terminal using the following command:
 
