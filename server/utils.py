@@ -2,10 +2,10 @@
 High level utilities, can be used by any of the layers (data, service,
 interface) and should not have any dependency on Flask or request context.
 """
-import re
+import requests, base64
 from types import FunctionType
 from os import environ as env
-from json import loads
+import json
 from server.config import Config
 from server.exceptions import APIException
 
@@ -39,3 +39,35 @@ def get_service_url(service_name):
         return env['RECOMMENDATION_SERVICE']
     else:
         raise APIException('Unrecognized service invocation')
+
+def call_openwhisk(action, payload=None):
+    """
+    Calls and waits for the completion of an OpenWhisk action with the optional payload
+
+    :param action:     The action to call
+    :param payload:    An optional dictionary with arguments for the action
+    :return:           The invocation result
+    """
+
+    url = '%s/api/v1/namespaces/%s/actions/%s/%s?blocking=true' % (
+        Config.OPENWHISK_URL,
+        Config.OPENWHISK_NAMESPACE,
+        Config.OPENWHISK_PACKAGE,
+        action
+        )
+
+    if payload is not None:
+        payload_json = json.dumps(payload)
+    else:
+        payload_json = None
+
+    headers = {
+        'Authorization': "Basic %s" % base64.b64encode(Config.OPENWHISK_AUTH),
+        'content-type': "application/json",
+        'cache-control': "no-cache"
+    }
+
+    response = requests.request("POST", url, data=payload_json, headers=headers)
+    body = json.loads(response.text)
+    result = body.get('response').get('result')
+    return json.dumps(result)

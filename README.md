@@ -4,13 +4,11 @@
 | ----- | ----- |
 | **dev** | [![Build Status](https://travis-ci.org/IBM-Bluemix/logistics-wizard-controller.svg?branch=dev)](https://travis-ci.org/IBM-Bluemix/logistics-wizard-controller) [![Coverage Status](https://coveralls.io/repos/github/IBM-Bluemix/logistics-wizard-controller/badge.svg?branch=dev)](https://coveralls.io/github/IBM-Bluemix/logistics-wizard-controller?branch=dev)|
 
-**WORK IN PROGRESS**
-
 This service is part of the larger [Logistics Wizard](https://github.com/IBM-Bluemix/logistics-wizard) project.
 
 ## Overview
 
-This repository serves as the central server application for the Logistics Wizard application and acts as the main controller for interaction between the system's services.
+This service acts as the main controller for interaction between the system's services.
 
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/IBM-Bluemix/logistics-wizard-controller.git)
 
@@ -20,31 +18,53 @@ This repository serves as the central server application for the Logistics Wizar
 
 1. If you do not already have a Bluemix account, [sign up here][bluemix_signup_url]
 
-2. Download and install the [Cloud Foundry CLI][cloud_foundry_url] tool
+1. Download and install the [Cloud Foundry CLI][cloud_foundry_url] tool
 
-3. Clone the app and its submodules to your local environment from your terminal using the following command:
+1. The app depends on the [ERP](https://github.com/IBM-Bluemix/logistics-wizard-erp) and [Recommendation](https://github.com/IBM-Bluemix/logistics-wizard-recommendation) microservices. Make sure to deploy them first.
+
+1. Clone the app to your local environment from your terminal using the following command:
 
 	```bash
-	$ git clone --recursive https://github.com/IBM-Bluemix/logistics-wizard-controller.git
+	git clone https://github.com/IBM-Bluemix/logistics-wizard-controller.git
 	```
 
-4. `cd` into this newly created directory
+1. `cd` into this newly created directory
 
-5. Open the `manifest.yml` file and change the `host` value to something unique.
+1. Open the `manifest.yml` file and change the `host` value to something unique.
 
   The host you choose will determinate the subdomain of your application's URL:  `<host>.mybluemix.net`
 
-6. Connect to Bluemix in the command line tool and follow the prompts to log in.
+1. Connect to Bluemix in the command line tool and follow the prompts to log in.
 
 	```bash
-	$ cf api https://api.ng.bluemix.net
-	$ cf login
+	cf api https://api.ng.bluemix.net
+	cf login
 	```
-7. Push the app to Bluemix.
+1. Push the app to Bluemix.
 
 	```bash
-	$ cf push
+	cf push --no-start
 	```
+
+1. Define the environment variable pointing to the ERP service.
+
+  ```
+  cf set-env logistics-wizard-controller ERP_SERVICE <url-to-erp-service-here>
+  ```
+
+1. Define the OpenWhisk auth, namespace and package where the actions of the Recommendation service have been deployed
+
+  ```
+  cf set-env logistics-wizard-controller OPENWHISK_AUTH "your-auth-key"
+  cf set-env logistics-wizard-controller OPENWHISK_NAMESPACE "the-namespace"
+  cf set-env logistics-wizard-controller OPENWHISK_PACKAGE logistics-wizard-recommendation
+  ```
+
+1. Start the app.
+
+  ```bash
+  cf start logistics-wizard-controller
+  ```
 
 And voila! You now have your very own instance of Logistics Wizard running on Bluemix.
 
@@ -55,7 +75,7 @@ And voila! You now have your very own instance of Logistics Wizard running on Bl
 2. Clone the app to your local environment from your terminal using the following command:
 
   ```bash
-  $ git clone --recursive https://github.com/IBM-Bluemix/logistics-wizard-controller.git
+  git clone https://github.com/IBM-Bluemix/logistics-wizard-controller.git
   ```
 
 3. `cd` into this newly created directory
@@ -63,34 +83,40 @@ And voila! You now have your very own instance of Logistics Wizard running on Bl
 4. In order to create an isolated development environment, we will be using Python's [virtualenv][virtualenv_url] tool. If you do not have it installed already, run
 
   ```bash
-  $ pip install virtualenv
+  pip install virtualenv
   ```
 
   Then create a virtual environment called `venv` by running
 
   ```bash
-  $ virtualenv venv
+  virtualenv venv
   ```
 
 5. Activate this new environment with
 
   ```bash
-  $ source .env
+  source .env
   ```
 
 6. Install module requirements
 
   ```bash
-  $ pip install -r requirements.dev.txt
+  pip install -r requirements.dev.txt
   ```
 
 7. Finally, start the app
 
   ```bash
-  $ python bin/start_web.py
+  python bin/start_web.py
   ```
 
-To override values for your local environment variables create a `.env.local`.
+To override values for your local environment variables create a file named `.env.local` from the template:
+
+  ```
+  cp template-env.local .env.local
+  ```
+
+and edit the file to match your environment.
 
 ## Testing
 
@@ -98,7 +124,7 @@ To override values for your local environment variables create a `.env.local`.
 There are series of unit tests located in the [`server/tests`](server/tests) folder. The test suites are composed using the Python [unittest framework][unittest_docs_url]. To run the tests, execute the following command:
 
   ```bash
-  $ python server/tests/run_unit_tests.py
+  python server/tests/run_unit_tests.py
   ```
 
 ### Integration Tests
@@ -108,7 +134,7 @@ and the other services, like the ERP service. These tests require a ERP service 
 To run the tests, execute the following command:
 
  ```bash
- $ python server/tests/run_integration_tests.py
+ python server/tests/run_integration_tests.py
  ```
 
 ### Travis CI

@@ -760,6 +760,87 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
+  '/weather/recommendations':
+    get:
+      summary: Get Recommendations
+      description: |
+        Get recommendations for a demo session
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer token
+          required: true
+          type: string
+      tags:
+        - Weather
+      responses:
+        200:
+          description: The recommendations
+  '/weather/acknowledge':
+    post:
+      summary: Acknowledge a recommendation
+      description: |
+        Acknowledge a recommendation
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer token
+          required: true
+          type: string
+        - name: id
+          in: body
+          description: Recommendation Id
+          required: true
+          type: string
+      tags:
+        - Weather
+      responses:
+        200:
+          description: The recommendations
+  '/weather/simulate':
+    post:
+      summary: Trigger a simulation
+      description: |
+        Trigger a simulation
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer token
+          required: true
+          type: string
+      tags:
+        - Weather
+      responses:
+        200:
+          description: Upon successful triggering
+  '/weather/observations':
+    post:
+      summary: Return weather observations for the given location
+      description: |
+        Return weather observations for the given location
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer token
+          required: true
+          type: string
+        - name: latitude
+          in: body
+          description: Latitude of the location to lookup
+          required: true
+          type: number
+        - name: longitude
+          in: body
+          description: Longitude of the location to lookup
+          required: true
+          type: number
+      tags:
+        - Weather
+      responses:
+        200:
+          description: |
+            An aggregation of th current weather observation, 10-day forecasts and
+            alerts results from the Weather Company Data service
 definitions:
   Demo:
     properties:

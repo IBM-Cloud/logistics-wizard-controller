@@ -1,0 +1,59 @@
+{
+      "key": "cf63821f-9521-3f27-92ec-e1562ccd469b",
+      "class": "bulletin",
+      "msg_type_cd": 2,
+      "msg_type": "Update",
+      "pil": "NPW",
+      "phenomena": "HT",
+      "significance": "Y",
+      "etn": "0003",
+      "office_cd": "KSGX",
+      "office_name": "Arlington",
+      "office_st_cd": "VA",
+      "office_cntry_cd": "US",
+      "event_desc": "Snow Storm",
+      "severity_cd": 3,
+      "severity": "Moderate",
+      "categories": [
+        {
+          "category": "Met",
+          "category_cd": 2
+        }
+      ],
+      "response_types": [
+        {
+          "response_type": "Execute",
+          "response_type_cd": 4
+        }
+      ],
+      "urgency": "Expected",
+      "urgency_cd": 2,
+      "certainty": "Likely",
+      "certainty_cd": 2,
+      "effective_dt_tm_local": null,
+      "effective_dt_tm_tz_abbrv": null,
+      "expire_dt_tm_local": "2016-06-29T20:00:00-07:00",
+      "expire_dt_tm_tz_abbrv": "EST",
+      "expire_time_gmt": 1467255600,
+      "onset_dt_tm_local": null,
+      "onset_dt_tm_tz_abbrv": null,
+      "flood": null,
+      "area_type": "Z",
+      "lat": 38.89,
+      "lon": -77.03,
+      "area_id": "CAZ048",
+      "area_name": "DC Area",
+      "st_cd": "VA",
+      "st_name": "Virginia",
+      "cntry_cd": "US",
+      "cntry_name": "UNITED STATES OF AMERICA",
+      "headline_text": "Heavy snow fall thru next week",
+      "detail_key": "cf63821f-9521-3f27-92ec-e1562ccd469b",
+      "source": "National Weather Service",
+      "disclaimer": null,
+      "issue_dt_tm_local": "2016-06-27T04:38:50-07:00",
+      "issue_dt_tm_tz_abbrv": "EST",
+      "identifier": "e234b6f889bf9a91c5d9f309db63eaa0",
+      "proc_dt_tm_local": "2016-06-27T04:38:58-07:00",
+      "proc_dt_tm_tz_abbrv": "EST"
+    }

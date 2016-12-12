@@ -30,6 +30,7 @@ def create_app():
     from server.web.rest.distribution_centers import distribution_centers_v1_blueprint
     from server.web.rest.retailers import retailers_v1_blueprint
     from server.web.rest.products import products_v1_blueprint
+    from server.web.rest.weather import weather_v1_blueprint
 
     # Emit Bluemix deployment event
     cf_deployment_tracker.track()
@@ -47,6 +48,7 @@ def create_app():
     logistics_wizard.register_blueprint(distribution_centers_v1_blueprint, url_prefix='/api/v1')
     logistics_wizard.register_blueprint(retailers_v1_blueprint, url_prefix='/api/v1')
     logistics_wizard.register_blueprint(products_v1_blueprint, url_prefix='/api/v1')
+    logistics_wizard.register_blueprint(weather_v1_blueprint, url_prefix='/api/v1')
 
     logistics_wizard.before_request(setup_auth_from_request)
 
