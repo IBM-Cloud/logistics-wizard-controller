@@ -49,9 +49,8 @@ def call_openwhisk(action, payload=None):
     :return:           The invocation result
     """
 
-    url = '%s/api/v1/namespaces/%s/actions/%s/%s?blocking=true' % (
+    url = '%s/api/v1/namespaces/_/actions/%s/%s?blocking=true' % (
         Config.OPENWHISK_URL,
-        Config.OPENWHISK_NAMESPACE,
         Config.OPENWHISK_PACKAGE,
         action
         )

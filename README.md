@@ -52,11 +52,10 @@ This service acts as the main controller for interaction between the system's se
   cf set-env logistics-wizard-controller ERP_SERVICE <url-to-erp-service-here>
   ```
 
-1. Define the OpenWhisk auth, namespace and package where the actions of the Recommendation service have been deployed
+1. Define the OpenWhisk auth key and the package where the actions of the Recommendation service have been deployed
 
   ```
   cf set-env logistics-wizard-controller OPENWHISK_AUTH "your-auth-key"
-  cf set-env logistics-wizard-controller OPENWHISK_NAMESPACE "the-namespace"
   cf set-env logistics-wizard-controller OPENWHISK_PACKAGE logistics-wizard-recommendation
   ```
 
