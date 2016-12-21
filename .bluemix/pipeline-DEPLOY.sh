@@ -1,5 +1,12 @@
 #!/bin/bash
 # Set app's env vars
+if [ "$REPO_BRANCH" == "master" ]; then
+  LOGISTICS_WIZARD_ENV="PROD"
+else
+  LOGISTICS_WIZARD_ENV="DEV"
+fi
+echo "LOGISTICS_WIZARD_ENV: $LOGISTICS_WIZARD_ENV"
+
 domain=".mybluemix.net"
 case "${REGION_ID}" in
   ibm:yp:eu-gb)
