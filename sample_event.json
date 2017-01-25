@@ -41,6 +41,7 @@
       "area_type": "Z",
       "lat": 38.89,
       "lon": -77.03,
+      "radiusInKm": 800,
       "area_id": "CAZ048",
       "area_name": "DC Area",
       "st_cd": "VA",
