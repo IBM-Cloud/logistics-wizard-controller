@@ -35,8 +35,6 @@ def get_service_url(service_name):
 
     if service_name == 'lw-erp':
         return env['ERP_SERVICE']
-    elif service_name == 'lw-recommendation':
-        return env['RECOMMENDATION_SERVICE']
     else:
         raise APIException('Unrecognized service invocation')
 
