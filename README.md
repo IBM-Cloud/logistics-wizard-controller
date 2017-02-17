@@ -56,7 +56,7 @@ This service acts as the main controller for interaction between the system's se
 
   ```
   cf set-env logistics-wizard-controller OPENWHISK_AUTH "your-auth-key"
-  cf set-env logistics-wizard-controller OPENWHISK_PACKAGE logistics-wizard-recommendation
+  cf set-env logistics-wizard-controller OPENWHISK_PACKAGE lwr
   ```
 
 1. Start the app.

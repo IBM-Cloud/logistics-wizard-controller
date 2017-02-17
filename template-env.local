@@ -2,4 +2,4 @@
 # If you edit this file, you need to rerun 'source .env'
 export ERP_SERVICE=http://0.0.0.0:3000
 export OPENWHISK_AUTH=
-export OPENWHISK_PACKAGE=logistics-wizard-recommendation
+export OPENWHISK_PACKAGE=lwr
