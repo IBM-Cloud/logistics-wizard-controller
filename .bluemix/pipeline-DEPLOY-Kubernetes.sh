@@ -36,6 +36,7 @@ kubectl version
 istioctl version
 
 # create secret with the OPENWHISK_AUTH and RECOMMENDATION_PACKAGE_NAME
+kubectl delete secret lw-controller-env
 kubectl create secret generic lw-controller-env \
   --from-literal=OPENWHISK_AUTH="${OPENWHISK_AUTH}" \
   --from-literal=OPENWHISK_PACKAGE="${RECOMMENDATION_PACKAGE_NAME}"
