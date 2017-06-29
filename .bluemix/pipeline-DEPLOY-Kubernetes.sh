@@ -35,6 +35,11 @@ eval "$exp"
 kubectl version
 istioctl version
 
+# create secret with the OPENWHISK_AUTH and RECOMMENDATION_PACKAGE_NAME
+kubectl create secret generic lw-controller-env \
+  --from-literal=OPENWHISK_AUTH="${OPENWHISK_AUTH}" \
+  --from-literal=OPENWHISK_PACKAGE="${RECOMMENDATION_PACKAGE_NAME}"
+
 echo "Using Docker image $IMAGE_NAME"
 ESCAPED_IMAGE_NAME=$(echo $IMAGE_NAME | sed 's/\//\\\//g')
 cat lw-controller-deployment.yml | sed 's/registry.ng.bluemix.net\/<namespace>\/lw-controller:latest/'$ESCAPED_IMAGE_NAME'/g' > tmp-controller.yml

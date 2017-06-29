@@ -33,6 +33,17 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
+        env:
+          - name: OPENWHISK_AUTH
+            valueFrom:
+              secretKeyRef:
+                name: lw-controller-env
+                key: OPENWHISK_AUTH
+          - name: OPENWHISK_PACKAGE
+            valueFrom:
+              secretKeyRef:
+                name: lw-controller-env
+                key: OPENWHISK_PACKAGE
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
