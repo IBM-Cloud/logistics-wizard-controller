@@ -1,0 +1,18 @@
+#######################################################
+# Kubernetes + Istio deployment for ERP
+#######################################################
+
+type: route-rule
+name: lw-controller-default
+spec:
+  destination: lw-controller.default.svc.cluster.local
+  # match:
+  #   httpHeaders:
+  #     uri:
+  #       prefix: /controller
+  rewrite:
+    uri: /
+  route:
+  - tags:
+      version: v1
+    weight: 100
