@@ -22,6 +22,11 @@ curl -L https://git.io/getIstio | sh -
 (cd istio-* && ln -s $PWD/bin/istioctl /tmp/bin/istioctl)
 istioctl version
 
+if [ -z "$OPENWHISK_API_HOST" ]; then
+  echo 'OPENWHISK_API_HOST is not defined. Using default value.'
+  export OPENWHISK_API_HOST=openwhisk.ng.bluemix.net
+fi
+
 if [ -z "$OPENWHISK_AUTH" ]; then
   echo 'OPENWHISK_AUTH is not defined. Retrieving OpenWhisk authorization key...'
   CF_ACCESS_TOKEN=`cat ~/.cf/config.json | jq -r .AccessToken | awk '{print $2}'`
