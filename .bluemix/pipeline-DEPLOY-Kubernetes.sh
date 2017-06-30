@@ -50,4 +50,4 @@ cat lw-controller-deployment.yml | sed 's/registry.ng.bluemix.net\/<namespace>\/
 echo -e 'Deploying service...'
 istioctl delete -f lw-controller-routes.yml
 istioctl create -f lw-controller-routes.yml
-kubectl apply -f <(istioctl kube-inject -f tmp-controller.yml --includeIPRanges=10.0.0.1/24)
+kubectl apply -f <(istioctl kube-inject -f tmp-controller.yml --includeIPRanges=172.30.0.0/16,172.20.0.0/16,10.0.0.1/24)
