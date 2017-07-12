@@ -1,0 +1,62 @@
+#######################################################
+# Kubernetes + Istio deployment for Controller
+#######################################################
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: lw-controller
+  labels:
+    app: lw-controller
+spec:
+  ports:
+  - port: 8080
+    name: http
+  selector:
+    app: lw-controller
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: lw-controller-v1
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: lw-controller
+        version: v1
+    spec:
+      containers:
+      - name: lw-controller
+        image: registry.ng.bluemix.net/<namespace>/lw-controller:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+          - name: OPENWHISK_AUTH
+            valueFrom:
+              secretKeyRef:
+                name: lw-controller-env
+                key: OPENWHISK_AUTH
+          - name: OPENWHISK_PACKAGE
+            valueFrom:
+              secretKeyRef:
+                name: lw-controller-env
+                key: OPENWHISK_PACKAGE
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: lw-controller-gateway
+  annotations:
+    kubernetes.io/ingress.class: "istio"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /lw/controller/.*
+        backend:
+          serviceName: lw-controller
+          servicePort: 8080
+---
