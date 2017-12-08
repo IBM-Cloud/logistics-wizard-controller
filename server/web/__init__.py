@@ -19,7 +19,6 @@ def create_app():
 
     :return:         A flask object/wsgi callable.
     """
-    import cf_deployment_tracker
     from server.config import Config
     from os import environ as env
     from server.exceptions import APIException
@@ -32,9 +31,6 @@ def create_app():
     from server.web.rest.retailers import retailers_v1_blueprint
     from server.web.rest.products import products_v1_blueprint
     from server.web.rest.weather import weather_v1_blueprint
-
-    # Emit Bluemix deployment event
-    cf_deployment_tracker.track()
 
     # Create the app
     logistics_wizard = Flask('logistics_wizard', static_folder=None)

@@ -1,9 +1,6 @@
 """
 A proxy app for the Logistics Wizard demo system
 
-See:
-https://github.com/IBM-Bluemix/cf-deployment-tracker-service
-https://github.com/IBM-Bluemix/cf-deployment-tracker-client-python
 """
 
 # Always prefer setuptools over distutils
@@ -35,5 +32,5 @@ setup(
     ],
     keywords='demos samples logistics hybrid-cloud microservices',
     packages=find_packages(),
-    install_requires=['Flask,Flask-Cors>=2,gunicorn>=19,requests>=2,PyJWT>=1,decorator>=4,cf-deployment-tracker'],
+    install_requires=['Flask,Flask-Cors>=2,gunicorn>=19,requests>=2,PyJWT>=1,decorator>=4'],
 )
