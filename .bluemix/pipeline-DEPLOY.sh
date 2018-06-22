@@ -1,4 +1,6 @@
 #!/bin/bash
+bx api $CF_TARGET_URL
+
 # Set app's env vars
 if [ "$REPO_BRANCH" == "master" ]; then
   LOGISTICS_WIZARD_ENV="PROD"
