@@ -53,7 +53,7 @@ def create_user(guid, retailer_id):
         'cache-control': "no-cache"
     }
     payload = dict()
-    payload['retailerId'] = int(retailer_id)
+    payload['retailerId'] = retailer_id
     payload_json = json.dumps(payload)
 
     try:
@@ -85,7 +85,7 @@ def login(guid, user_id):
         'cache-control': "no-cache"
     }
     payload = dict()
-    payload['userId'] = int(user_id)
+    payload['userId'] = user_id
     payload_json = json.dumps(payload)
 
     try:
