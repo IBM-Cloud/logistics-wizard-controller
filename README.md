@@ -165,7 +165,7 @@ The primary source of debugging information for your IBM Cloud app is the logs. 
   ```
   $ ibmcloud app logs logistics-wizard-controller --recent
   ```
-For more detailed information on troubleshooting your application, see the [Troubleshooting section](https://www.ng.bluemix.net/docs/troubleshoot/tr.html) in the Bluemix documentation.
+For more detailed information on troubleshooting your application, see the [Troubleshooting section](https://www.ng.bluemix.net/docs/troubleshoot/tr.html) in the IBM Cloud documentation.
 
 ## License
 
