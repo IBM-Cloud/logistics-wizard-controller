@@ -2,11 +2,11 @@ FROM python:2.7.13
 
 ADD bin /app/bin
 ADD server /app/server
-ADD requirements.dev.txt /app
-ADD requirements.txt /app
-ADD runtime.txt /app
-ADD sample_event.json /app
-ADD setup.py /app
+ADD requirements.dev.txt /app/requirements.dev.txt
+ADD requirements.txt /app/requirements.txt
+ADD runtime.txt /app/runtime.txt
+ADD sample_event.json /app/sample_event.json
+ADD setup.py /app/setup.py
 
 ENV ERP_SERVICE http://lw-erp:8080
 ENV OPENWHISK_PACKAGE=lwr
