@@ -2,6 +2,9 @@
 echo Login IBM Cloud api=$CF_TARGET_URL org=$CF_ORG space=$CF_SPACE
 bx login -a "$CF_TARGET_URL" --apikey "$IAM_API_KEY" -o "$CF_ORG" -s "$CF_SPACE"
 
+# ensure the CFx API key is retrieved for the current CF_ORG and CF_SPACE
+bx wsk list
+
 # get the CFx API key
 OPENWHISK_AUTH=`bx wsk property get --auth | awk '{print $3}'`
 
