@@ -98,7 +98,7 @@ def tokenize(data):
     :param data:  Any dict to be tokenized.
     :return:      A signed token representing the data.
     """
-    return jwt.encode(data, Config.SECRET)
+    return jwt.encode(data, Config.SECRET).decode('utf-8')
 
 
 def detokenize(token):
