@@ -27,7 +27,7 @@ var/
 *.egg
 
 # python virtual environment/compiled files
-venv/
+venv*/
 *.pyc
 
 # PyInstaller
