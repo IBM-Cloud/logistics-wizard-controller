@@ -64,5 +64,4 @@ def call_openwhisk(action, payload=None):
 
     response = requests.request("POST", url, data=payload_json, headers=headers)
     body = json.loads(response.text)
-    result = body.get('response').get('result')
-    return json.dumps(result)
+    return json.dumps(body)
