@@ -43,7 +43,7 @@ This service orchestrates interaction between Logistics Wizard's services.
   ibmcloud app set-env logistics-wizard-controller ERP_SERVICE <url-to-erp-service-here>
   ```
 
-10. Define the [IBM Cloud Functions API Key](https://console.bluemix.net/openwhisk/learn/api-key) and the package where the actions of the Recommendation service have been deployed
+10. Set the URL used to call the actions of the Recommendation service, eg `https://us-south.functions.cloud.ibm.com/api/v1/web/<namespace-id>/<package-name>`:
   
   ```
   ibmcloud app set-env logistics-wizard-controller FUNCTIONS_NAMESPACE_URL "url-to-the-namespace-web-actions"
