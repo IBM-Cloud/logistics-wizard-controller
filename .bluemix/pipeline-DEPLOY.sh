@@ -3,12 +3,16 @@ echo Login IBM Cloud api=$CF_TARGET_URL org=$CF_ORG space=$CF_SPACE
 bx login -a "$CF_TARGET_URL" --apikey "$IAM_API_KEY" -o "$CF_ORG" -s "$CF_SPACE" -g "$RESOURCE_GROUP"
 
 # ensure the CFx API key is retrieved for the current CF_ORG and CF_SPACE
-bx wsk list
+ibmcloud fn namespace list
 
 # get the CFx API key
 OPENWHISK_HOST=$(ibmcloud fn property get --apihost -o raw)
 NAMESPACE_INSTANCE_ID=$(ibmcloud fn namespace get $FUNCTIONS_NAMESPACE --properties | grep ID | awk '{print $2}')
-FUNCTIONS_NAMESPACE_URL=https://$OPENWHISK_HOST/api/v1/web/$NAMESPACE_INSTANCE_ID/$OPENWHISK_PACKAGE
+FUNCTIONS_NAMESPACE_URL=https://${OPENWHISK_HOST}/api/v1/web/${NAMESPACE_INSTANCE_ID}/${OPENWHISK_PACKAGE}
+
+echo "Cloud Functions host is $OPENWHISK_HOST"
+echo "Namespace Instance ID is $NAMESPACE_INSTANCE_ID"
+echo "URL to call functions is $FUNCTIONS_NAMESPACE_URL"
 
 # Set app's env vars
 if [ "$REPO_BRANCH" == "master" ]; then
