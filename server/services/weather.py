@@ -52,18 +52,3 @@ def trigger_simulation(demoGuid):
         raise APIException('KO', internal_details=str(e))
 
     return response
-
-def get_observations(latitude, longitude):
-    """
-    Return observations for the given location
-    """
-
-    try:
-        payload = dict()
-        payload['latitude'] = latitude
-        payload['longitude'] = longitude
-        response = call_openwhisk('observations', payload)
-    except Exception as e:
-        raise APIException('KO', internal_details=str(e))
-
-    return response

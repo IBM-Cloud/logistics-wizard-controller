@@ -4,8 +4,8 @@ applications:
   memory: 256M
   instances: 1
   name: logistics-wizard-controller
-  host: logistics-wizard-controller
-  buildpack: python_buildpack
+  buildpacks:
+    - python_buildpack
   env:
     LOGISTICS_WIZARD_ENV: PROD
     ERP_SERVICE: XXX

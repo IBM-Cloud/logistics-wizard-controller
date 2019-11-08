@@ -34,7 +34,7 @@ def create_app():
 
     # Create the app
     logistics_wizard = Flask('logistics_wizard', static_folder=None)
-    CORS(logistics_wizard, origins=[re.compile('.*')], supports_credentials=True)
+    CORS(logistics_wizard, supports_credentials=True)
     if Config.ENVIRONMENT == 'DEV':
         logistics_wizard.debug = True
 

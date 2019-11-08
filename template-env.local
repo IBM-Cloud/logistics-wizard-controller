@@ -1,5 +1,7 @@
 # Copy to .env.local
 # If you edit this file, you need to rerun 'source .env'
 export ERP_SERVICE=http://0.0.0.0:3000
-export OPENWHISK_AUTH=
+export FUNCTIONS_HOST=us-south.functions.cloud.ibm.com
+export NAMESPACE_ID=
 export OPENWHISK_PACKAGE=lwr
+export FUNCTIONS_NAMESPACE_URL=https://$FUNCTIONS_HOST/api/v1/web/$NAMESPACE_ID/$OPENWHISK_PACKAGE

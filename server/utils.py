@@ -47,9 +47,8 @@ def call_openwhisk(action, payload=None):
     :return:           The invocation result
     """
 
-    url = '%s/api/v1/namespaces/_/actions/%s/%s?blocking=true' % (
-        Config.OPENWHISK_URL,
-        Config.OPENWHISK_PACKAGE,
+    url = '%s/%s.json' % (
+        Config.FUNCTIONS_NAMESPACE_URL,
         action
         )
 
@@ -59,12 +58,10 @@ def call_openwhisk(action, payload=None):
         payload_json = None
 
     headers = {
-        'Authorization': "Basic %s" % base64.b64encode(Config.OPENWHISK_AUTH),
         'content-type': "application/json",
         'cache-control': "no-cache"
     }
 
     response = requests.request("POST", url, data=payload_json, headers=headers)
     body = json.loads(response.text)
-    result = body.get('response').get('result')
-    return json.dumps(result)
+    return json.dumps(body)

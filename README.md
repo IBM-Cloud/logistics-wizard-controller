@@ -46,8 +46,7 @@ This service orchestrates interaction between Logistics Wizard's services.
 10. Define the [IBM Cloud Functions API Key](https://console.bluemix.net/openwhisk/learn/api-key) and the package where the actions of the Recommendation service have been deployed
   
   ```
-  ibmcloud app set-env logistics-wizard-controller OPENWHISK_AUTH "your-api-key"
-  ibmcloud app set-env logistics-wizard-controller OPENWHISK_PACKAGE lwr
+  ibmcloud app set-env logistics-wizard-controller FUNCTIONS_NAMESPACE_URL "url-to-the-namespace-web-actions"
   ```
 
 11. Start the Controller.
