@@ -11,7 +11,7 @@ ibmcloud fn namespace list
 # get the CFx API key
 OPENWHISK_HOST=$(ibmcloud fn property get --apihost -o raw)
 NAMESPACE_INSTANCE_ID=$(ibmcloud fn namespace get $FUNCTIONS_NAMESPACE --properties | grep ID | awk '{print $2}')
-FUNCTIONS_NAMESPACE_URL=https://${OPENWHISK_HOST}/api/v1/web/${NAMESPACE_INSTANCE_ID}/${OPENWHISK_PACKAGE}
+FUNCTIONS_NAMESPACE_URL=https://${OPENWHISK_HOST}/api/v1/web/${NAMESPACE_INSTANCE_ID}/${RECOMMENDATION_PACKAGE_NAME}
 
 echo "Cloud Functions host is $OPENWHISK_HOST"
 echo "Namespace Instance ID is $NAMESPACE_INSTANCE_ID"
