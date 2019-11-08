@@ -1,6 +1,9 @@
 #!/bin/bash
 echo Login IBM Cloud api=$CF_TARGET_URL org=$CF_ORG space=$CF_SPACE
-bx login -a "$CF_TARGET_URL" --apikey "$IAM_API_KEY" -o "$CF_ORG" -s "$CF_SPACE" -g "$RESOURCE_GROUP"
+ibmcloud login -a "$CF_TARGET_URL" --apikey "$IAM_API_KEY" -o "$CF_ORG" -s "$CF_SPACE" -g "$RESOURCE_GROUP"
+
+# get latest plugins (1.0.32 of cloud-functions had an issue retrieving apihost)
+ibmcloud plugin update --all
 
 # ensure the CFx API key is retrieved for the current CF_ORG and CF_SPACE
 ibmcloud fn namespace list
