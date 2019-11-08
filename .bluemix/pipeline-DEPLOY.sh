@@ -5,7 +5,10 @@ ibmcloud login -a "$CF_TARGET_URL" --apikey "$IAM_API_KEY" -o "$CF_ORG" -s "$CF_
 # get latest plugins (1.0.32 of cloud-functions had an issue retrieving apihost)
 ibmcloud plugin update --all
 
-# get the CFx API key
+# show existing namespaces
+ibmcloud fn namespace list
+
+# get the namespace URL
 OPENWHISK_HOST=$(ibmcloud fn property get --apihost -o raw)
 NAMESPACE_INSTANCE_ID=$(ibmcloud fn namespace get $FUNCTIONS_NAMESPACE --properties | grep ID | awk '{print $2}')
 FUNCTIONS_NAMESPACE_URL=https://${OPENWHISK_HOST}/api/v1/web/${NAMESPACE_INSTANCE_ID}/${RECOMMENDATION_PACKAGE_NAME}
