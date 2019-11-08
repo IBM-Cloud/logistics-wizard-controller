@@ -44,17 +44,3 @@ def trigger_simulation():
     return Response(response,
                     status=200,
                     mimetype='application/json')
-
-@weather_v1_blueprint.route('/weather/observations', methods=['POST'])
-@logged_in
-def get_observations():
-    """
-    Return observations for the given location.
-    :return: observations for the given location.
-    """
-    body = get_json_data(request)
-
-    observations = weather_service.get_observations(body.get('latitude'), body.get('longitude'))
-    return Response(observations,
-                    status=200,
-                    mimetype='application/json')
