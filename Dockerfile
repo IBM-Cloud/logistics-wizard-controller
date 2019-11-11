@@ -1,4 +1,4 @@
-FROM python:2.7.13
+FROM python:3.7.1
 
 ADD bin /app/bin
 ADD server /app/server
@@ -9,7 +9,6 @@ ADD sample_event.json /app/sample_event.json
 ADD setup.py /app/setup.py
 
 ENV ERP_SERVICE http://lw-erp:8080
-ENV OPENWHISK_PACKAGE=lwr
 
 ENV PORT 8080
 EXPOSE 8080

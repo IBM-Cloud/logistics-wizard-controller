@@ -35,30 +35,30 @@ case "${REGION_ID}" in
   ;;
 esac
 # Deploy app
-if ! bx app show $CF_APP; then
-  bx app push $CF_APP -n $CF_APP --no-start
-  bx app env-set $CF_APP LOGISTICS_WIZARD_ENV ${LOGISTICS_WIZARD_ENV}
-  bx app env-set $CF_APP ERP_SERVICE https://$ERP_SERVICE_APP_NAME$domain
-  bx app env-set $CF_APP FUNCTIONS_NAMESPACE_URL ${FUNCTIONS_NAMESPACE_URL}
-  bx app start $CF_APP
+if ! ibmcloud cf app $CF_APP; then
+  ibmcloud cf push $CF_APP -n $CF_APP --no-start
+  ibmcloud cf set-env $CF_APP LOGISTICS_WIZARD_ENV ${LOGISTICS_WIZARD_ENV}
+  ibmcloud cf set-env $CF_APP ERP_SERVICE https://$ERP_SERVICE_APP_NAME$domain
+  ibmcloud cf set-env $CF_APP FUNCTIONS_NAMESPACE_URL ${FUNCTIONS_NAMESPACE_URL}
+  ibmcloud cf start $CF_APP
 else
   OLD_CF_APP=${CF_APP}-OLD-$(date +"%s")
   rollback() {
     set +e
-    if bx app show $OLD_CF_APP; then
-      bx app logs $CF_APP --recent
-      bx app delete $CF_APP -f
-      bx app rename $OLD_CF_APP $CF_APP
+    if ibmcloud cf app $OLD_CF_APP; then
+      ibmcloud cf logs $CF_APP --recent
+      ibmcloud cf delete $CF_APP -f
+      ibmcloud cf rename $OLD_CF_APP $CF_APP
     fi
     exit 1
   }
   set -e
   trap rollback ERR
-  bx app rename $CF_APP $OLD_CF_APP
-  bx app push $CF_APP -n $CF_APP --no-start
-  bx app env-set $CF_APP LOGISTICS_WIZARD_ENV ${LOGISTICS_WIZARD_ENV}
-  bx app env-set $CF_APP ERP_SERVICE https://$ERP_SERVICE_APP_NAME$domain
-  bx app env-set $CF_APP FUNCTIONS_NAMESPACE_URL ${FUNCTIONS_NAMESPACE_URL}
-  bx app start $CF_APP
-  bx app delete $OLD_CF_APP -f
+  ibmcloud cf rename $CF_APP $OLD_CF_APP
+  ibmcloud cf push $CF_APP -n $CF_APP --no-start
+  ibmcloud cf set-env $CF_APP LOGISTICS_WIZARD_ENV ${LOGISTICS_WIZARD_ENV}
+  ibmcloud cf set-env $CF_APP ERP_SERVICE https://$ERP_SERVICE_APP_NAME$domain
+  ibmcloud cf set-env $CF_APP FUNCTIONS_NAMESPACE_URL ${FUNCTIONS_NAMESPACE_URL}
+  ibmcloud cf start $CF_APP
+  ibmcloud cf delete $OLD_CF_APP -f
 fi
